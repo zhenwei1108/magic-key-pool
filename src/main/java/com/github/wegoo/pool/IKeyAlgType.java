@@ -37,7 +37,7 @@ public interface IKeyAlgType {
    * @date 2023/1/25  13:47
    * @since: 1.0.0
    */
-  int getCacheSize();
+  int getBufferSize();
 
 
 }

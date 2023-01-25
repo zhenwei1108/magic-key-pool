@@ -21,7 +21,7 @@ public interface IAsymmetryKeyMagicKeyPool extends IMagicKeyPool {
     keyAlgTypes.forEach(keyAlgType -> {
       keyPool.put(keyAlgType.getKeyAlg() + "_" + keyAlgType.getKeyLen(),
           new LinkedBlockingDeque<>(
-              Math.min(Math.abs(keyAlgType.getCacheSize()), IMagicKeyPool.DEFAULT_MAX_POOL_SIZE)));
+              Math.min(Math.abs(keyAlgType.getBufferSize()), IMagicKeyPool.DEFAULT_MAX_POOL_SIZE)));
     });
   }
 
