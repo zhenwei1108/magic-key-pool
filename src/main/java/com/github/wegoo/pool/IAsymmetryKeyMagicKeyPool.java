@@ -17,16 +17,15 @@ public interface IAsymmetryKeyMagicKeyPool extends IMagicKeyPool {
 
   ConcurrentHashMap<String, BlockingDeque<KeyPair>> keyPool = new ConcurrentHashMap<>();
 
-  default void init(List<IKeyAlgType> keyAlgTypes, float loadFactor) {
+  default void init(List<IKeyAlgType> keyAlgTypes, float loadFactor, int bufferSize) {
     keyAlgTypes.forEach(keyAlgType -> {
-      keyPool.put(keyAlgType.getKeyAlg() + "_" + keyAlgType.getKeyLen(),
-          new LinkedBlockingDeque<>(
-              Math.min(Math.abs(keyAlgType.getBufferSize()), IMagicKeyPool.DEFAULT_MAX_POOL_SIZE)));
+      keyPool.put(IMagicKeyPool.getPoolsKey(keyAlgType), new LinkedBlockingDeque<>(
+          Math.min(Math.abs(bufferSize), IMagicKeyPool.DEFAULT_MAX_POOL_SIZE)));
     });
   }
 
   void add(KeyPair keyPair);
 
-  KeyPair get();
+  KeyPair get(IKeyAlgType keyAlgType);
 
 }

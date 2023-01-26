@@ -29,15 +29,4 @@ public interface IKeyAlgType {
    */
   int getKeyLen();
 
-  /**
-   * @author zhangzhenwei
-   * @description getCacheSize
-   * 获取密钥缓冲数量
-   * @return int
-   * @date 2023/1/25  13:47
-   * @since: 1.0.0
-   */
-  int getBufferSize();
-
-
 }

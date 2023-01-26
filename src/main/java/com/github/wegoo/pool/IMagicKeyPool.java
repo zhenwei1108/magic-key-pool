@@ -53,4 +53,9 @@ public interface IMagicKeyPool {
    */
   void init(List<IKeyAlgType> keyAlgTypes, float loadFactor);
 
+  static String getPoolsKey(IKeyAlgType keyAlgType) {
+    return keyAlgType.getKeyAlg() + "_" + keyAlgType.getKeyLen();
+  }
+
+
 }
