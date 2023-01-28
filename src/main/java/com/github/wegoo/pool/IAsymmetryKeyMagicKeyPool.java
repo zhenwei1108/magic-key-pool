@@ -27,6 +27,15 @@ public interface IAsymmetryKeyMagicKeyPool extends IMagicKeyPool {
 
   void add(KeyPair keyPair);
 
+  /**
+   * @author zhangzhenwei
+   * @description get 
+   * 从缓冲池获取密钥
+   * @param [keyAlgType, timeout, unit]
+   * @return java.security.KeyPair
+   * @date 2023/1/28  20:51
+   * @since: 1.0.0 
+   */
   KeyPair get(IKeyAlgType keyAlgType, long timeout, TimeUnit unit);
 
 }
