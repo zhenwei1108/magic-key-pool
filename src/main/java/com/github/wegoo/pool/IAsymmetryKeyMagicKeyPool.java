@@ -25,6 +25,15 @@ public interface IAsymmetryKeyMagicKeyPool extends IMagicKeyPool {
     });
   }
 
+  /**
+   * @author zhangzhenwei
+   * @description add 
+   * 补充密钥方法
+   * @param [keyPair]
+   * @return void
+   * @date 2023/1/28  20:56
+   * @since: 1.0.0 
+   */
   void add(KeyPair keyPair);
 
   /**
