@@ -10,10 +10,10 @@ public interface ISymmetryKeyMagicKeyPool extends IMagicKeyPool {
 
   ConcurrentHashMap<String, BlockingDeque<Key>> keyPool = new ConcurrentHashMap<>();
 
-  default void init(List<IKeyAlgType> keyAlgTypes, float loadFactor) {
+  default void init(List<IKeyAlgType> keyAlgTypes, float loadFactor, int bufferSize) {
     keyAlgTypes.forEach(keyAlgType -> {
       keyPool.put(keyAlgType.getKeyAlg() + "_" + keyAlgType.getKeyLen(), new LinkedBlockingDeque<>(
-          Math.min(Math.abs(keyAlgType.getBufferSize()), IMagicKeyPool.DEFAULT_MAX_POOL_SIZE)));
+          Math.min(Math.abs(bufferSize), IMagicKeyPool.DEFAULT_MAX_POOL_SIZE)));
     });
   }
 

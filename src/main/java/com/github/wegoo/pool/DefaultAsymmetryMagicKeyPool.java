@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class DefaultAsymmetryMagicKeyPool implements IAsymmetryKeyMagicKeyPool {
 
-  ConcurrentHashMap<String, BlockingDeque<KeyPair>> keyPool = new ConcurrentHashMap<>();
+  ConcurrentHashMap<String, BlockingDeque<KeyPair>> keyPool = new ConcurrentHashMap<>(5);
   IKeyPairGenerator keyGenerator;
 
   public void init(List<IKeyAlgType> keyAlgTypes, float loadFactor, int bufferSize) {
@@ -35,15 +35,19 @@ public abstract class DefaultAsymmetryMagicKeyPool implements IAsymmetryKeyMagic
     keyGenerator = generator;
   }
 
+
   @Override
-  public KeyPair get(IKeyAlgType keyAlgType) {
+  public KeyPair get(IKeyAlgType keyAlgType, long timeout, TimeUnit unit) {
     BlockingDeque<KeyPair> keyPairs = keyPool.get(IMagicKeyPool.getPoolsKey(keyAlgType));
     KeyPair keyPair;
     try {
-      keyPair = keyPairs.poll(1, TimeUnit.SECONDS);
+      keyPair = keyPairs.poll(timeout, unit);
     } catch (Exception ignore) {
       keyPair = keyGenerator.generatorKeyPair(keyAlgType);
     }
     return keyPair;
   }
+
+
+
 }

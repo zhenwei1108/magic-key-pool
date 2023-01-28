@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: zhangzhenwei
@@ -26,6 +27,6 @@ public interface IAsymmetryKeyMagicKeyPool extends IMagicKeyPool {
 
   void add(KeyPair keyPair);
 
-  KeyPair get(IKeyAlgType keyAlgType);
+  KeyPair get(IKeyAlgType keyAlgType, long timeout, TimeUnit unit);
 
 }
