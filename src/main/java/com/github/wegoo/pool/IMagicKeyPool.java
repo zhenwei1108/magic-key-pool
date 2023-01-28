@@ -27,6 +27,7 @@ public interface IMagicKeyPool {
    * @since: 1.0.0
    */
   int DEFAULT_MAX_POOL_SIZE = 1 << 19;
+  int DEFAULT_INIT_POOL_SIZE = 1 << 10;
 
   /**
    * @author zhangzhenwei
@@ -38,7 +39,7 @@ public interface IMagicKeyPool {
    * @since: 1.0.0
    */
   default void init(List<IKeyAlgType> keyAlgTypes) {
-    init(keyAlgTypes, IMagicKeyPool.DEFAULT_LOAD_FACTOR);
+    init(keyAlgTypes, IMagicKeyPool.DEFAULT_LOAD_FACTOR, DEFAULT_INIT_POOL_SIZE);
   }
 
   /**
@@ -51,7 +52,7 @@ public interface IMagicKeyPool {
    * @date 2023/1/25  14:27
    * @since: 1.0.0
    */
-  void init(List<IKeyAlgType> keyAlgTypes, float loadFactor);
+  void init(List<IKeyAlgType> keyAlgTypes, float loadFactor, int bufferSize);
 
   static String getPoolsKey(IKeyAlgType keyAlgType) {
     return keyAlgType.getKeyAlg() + "_" + keyAlgType.getKeyLen();
