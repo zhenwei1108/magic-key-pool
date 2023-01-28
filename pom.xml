@@ -22,7 +22,7 @@
     <repository>
       <id>github</id>
       <name>GitHub OWNER Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/zhenwei1108/network-engine</url>
+      <url>https://maven.pkg.github.com/zhenwei1108/magic-key-pool</url>
     </repository>
   </distributionManagement>
 
