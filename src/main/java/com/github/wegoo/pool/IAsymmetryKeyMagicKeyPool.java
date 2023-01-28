@@ -18,6 +18,16 @@ public interface IAsymmetryKeyMagicKeyPool extends IMagicKeyPool {
 
   ConcurrentHashMap<String, BlockingDeque<KeyPair>> keyPool = new ConcurrentHashMap<>();
 
+  /**
+   * @author zhangzhenwei
+   * @description init
+   * 初始化缓冲池
+   * @param [keyAlgTypes, loadFactor, bufferSize]
+   *        支持的密钥算法， 缓冲池阈值， 缓冲池大小
+   * @return void
+   * @date 2023/1/28  20:57
+   * @since: 1.0.0
+   */
   default void init(List<IKeyAlgType> keyAlgTypes, float loadFactor, int bufferSize) {
     keyAlgTypes.forEach(keyAlgType -> {
       keyPool.put(IMagicKeyPool.getPoolsKey(keyAlgType), new LinkedBlockingDeque<>(
